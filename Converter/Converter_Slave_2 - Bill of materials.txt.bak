@@ -1,0 +1,30 @@
+Ultiboard Information Export File
+
+Design Name  : Converter_Slave_2 - Bill of materials
+Report Date  : 8 October 2014
+Report Time  : 11:27
+--------------------------------------------------------------------------------
+
+VALUE        #    PACKAGE       
+
+1N4007-E3/54 1    Vishay\DO-204AL(DO-204AL)
+1N4148       1    NXP Semiconductors\DO-35-2(SOD27)
+1kOhm        3    IPC-7351\Chip-R0805
+1uF          4    IPC-7351\Chip-C0805
+4.7kOhm      1    IPC-7351\Chip-R0805
+4N35         2    IPC-2221A/2222\CASE730A-02
+10uF         1    IPC-7351\AlumElec-CaseA
+74LS14N      1    IPC-2221A/2222\NO14
+220uF        1    IPC-7351\AlumElec-CaseA
+220Ohm       1    IPC-7351\Chip-R0805
+330kOhm      2    IPC-7351\Chip-R0805
+430Ohm       1    IPC-7351\Chip-R0805
+DF1510S-E3/77 1    Vishay\SO-4(DFS)
+HDR1X2       1    Generic\HDR1X2
+HDR1X3       1    Generic\HDR1X3
+HDR1X4       1    Generic\HDR1X4
+LED_green    1    Ultiboard\LED9R2_5Vg
+LED_orange   1    Ultiboard\LED9R2_5Vo
+LED_red      1    Ultiboard\LED9R2_5V
+MAX232E      1    IPC-2221A/2222\DIP16
+MC7805CT     1    Generic\CASE221A

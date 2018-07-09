@@ -1,0 +1,26 @@
+SELECT
+  V.Variabl as Variabl,
+  fn_StrToIntDef(fn_ExDlm(2,V.Variabl,'+'),0) as N,
+  fn_StrToIntDef(fn_ExDlm(2,V.Vls,'^'),0) as NDS,
+  PRT.Incr as PRTIncr, PRT.Code as PRTCode, PRT.Name{if(DVM=1,'1','')} as PRTName
+FROM VARIABLES V
+  LEFT JOIN VAR_GET(V.Variabl,3,NULL,NULL) VG ON 1=1
+  LEFT JOIN PART PRT ON PRT.Incr=VG.Val
+@11111@Variabl~№|#~20~H~0~~~V.Variabl^N~№|#~5~~0~~~fn_StrToIntDef(fn_ExDlm(2,V.Variabl,'+'),0)^PRTIncr~Подразделение|Department~10~H~0~~~PRT.Incr^PRTCode~Код подразделения|Code of department~10~Y~0~~~PRT.Code^PRTName~Подразделение|Department~20~~0~~~PRT.Name^pNDS~Учет НДС~5~~0~~{if(cFVInt('_VIEW_.NDS') = 1, 'Есть', 'Нет')}~@NONE@142^317^^^^^>Tp^1^PRIMARY;_VIEW_.N;^^^^^^^^{cSetField('Tp',1)}
+{cSetField('Variabl','CASH_PART+'+cFVStr('_VIEW_.N'))}
+{cSetField('Vls',cFVStr('_VIEW_.PRTIncr')+Chr(94)+cFVStr('_VIEW_.NDS'))}
+~
+{if((cFVStr('_VIEW_.VARIABL')=cFVStr('VARIABL')) and (cGetVar('OLD_PRTINCR')=cFVStr('_VIEW_.PRTINCR')),'cmdExit','')}
+{Check(
+  cExecSQL(
+    'SELECT 1 FROM DUAL WHERE EXISTS(SELECT * FROM VARIABLES WHERE Variabl LIKE '+
+      SQ('CASH_PART+%')+' AND fn_ExDlm(1,Vls,fn_Chr(94))='+SQ(cFVStr('_VIEW_.PRTIncr'))+')'
+  )<>'1',
+  if(ILang=1,
+    'Key violation.'+Chr(13)+Chr(10)+Chr(13)+Chr(10)+'Record with the same value of field "Department" already exists.',
+    'Нарушение уникальности.'+Chr(13)+Chr(10)+Chr(13)+Chr(10)+'Запись с таким значением поля "Подразделение" уже существует.'
+  ),
+  '_VIEW_.PRTIncr'
+)}
+~
+^^^{cFVStr('_VIEW_.PRTINCR','OLD_PRTINCR')}^^@VARIABL^_^5~0~0~21^E^~Y@_VIEW_.N^№|#~~~4^5~15~100~21^E^~N~Y~{cSetField('Variabl','',1)}@_VIEW_.NDS^Учет НДС~~~1^110~15~194~21^C~Есть;Нет~1;0^~N~Y~{cSetField('Variabl','',1)}@_VIEW_.PRTIncr^Подразделение|Department~~~3^5~56~300~Y^I~21^~N~Y~{cSetField('Variabl','',1)}@@2^VARIABLES@Variabl^Variabl^^@@V.Variabl LIKE 'CASH_PART+%'@11@@@@

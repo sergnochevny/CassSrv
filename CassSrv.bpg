@@ -1,0 +1,43 @@
+#------------------------------------------------------------------------------
+VERSION = BWS.01
+#------------------------------------------------------------------------------
+!ifndef ROOT
+ROOT = $(MAKEDIR)\..
+!endif
+#------------------------------------------------------------------------------
+MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
+DCC = $(ROOT)\bin\dcc32.exe $**
+BRCC = $(ROOT)\bin\brcc32.exe $**
+#------------------------------------------------------------------------------
+PROJECTS = Datecs550.dll Datecs500.dll PQDLibrary.dll PBLibrary.dll \
+  EI_CassSrv.dll Sells.dll CassSrv.exe SellsMonitor.exe
+#------------------------------------------------------------------------------
+default: $(PROJECTS)
+#------------------------------------------------------------------------------
+
+
+Datecs550.dll: Datecs550_Protocol\Datecs550.dpr
+  $(DCC)
+
+CassSrv.exe: MainCassThread\CassSrv.dpr
+  $(DCC)
+
+PQDLibrary.dll: PQDLibrary\PQDLibrary.dpr
+  $(DCC)
+
+PBLibrary.dll: PBLibrary\PBLibrary.dpr
+  $(DCC)
+
+Datecs500.dll: Datecs500_Protocol\Datecs500.dpr
+  $(DCC)
+
+EI_CassSrv.dll: EI_CassSrv\Source\ExpImp\EI_CassSrv.dpr
+  $(DCC)
+
+SellsMonitor.exe: SellsMonitor\SellsMonitor.dpr
+  $(DCC)
+
+Sells.dll: SellsMonitordll\Sells.dpr
+  $(DCC)
+
+

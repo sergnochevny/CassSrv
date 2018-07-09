@@ -1,0 +1,26 @@
+sod@select
+  sod.Incr as Incr, sod.Vls as Vls,
+  sod.Variabl as Variabl, sod.BegDat as BegDat, sod.EndDat as EndDat,
+  p.Incr as pIncr, p.Code as pCode, p.Name as pName,
+  fn_ExDlm(1,fn_ExDlm(1,sod.Vls,fn_Chr(59)),fn_Chr(94)) as BCena,
+  fn_ExDlm(1,fn_ExDlm(2,sod.Vls,fn_Chr(59)),fn_Chr(94)) as ACena,
+  bmpl.Incr as bmplIncr, bmpl.Code as bmplCode, bmpl.Name as bmplName,
+  ampl.Incr as amplIncr, ampl.Code as amplCode, ampl.Name as amplName
+from SetOnDat sod
+  left join Part p on p.Incr=fn_ExDlm(2,sod.Variabl,'+')
+  left join MtuPriceL bmpl on bmpl.Incr =fn_StrToIntDef(fn_ExDlm(2,fn_ExDlm(1,sod.Vls,fn_Chr(59)),fn_Chr(94)),0)
+  left join MtuPriceL ampl on ampl.Incr =fn_StrToIntDef(fn_ExDlm(2,fn_ExDlm(2,sod.Vls,fn_Chr(59)),fn_Chr(94)),0)
+@11111@Incr~Incr~~~0~~~sod.Incr^Vls~Vls~~H~0~~~sod.Vls^Variabl~Variabl~20~H~0~~~sod.Variabl^BegDat~Начальная дата|Begin date|Початкова дата~10~~0~~~sod.BegDat^EndDat~Конечная дата|End date|Кінцева дата~10~~0~~~sod.EndDat^pIncr~Подразделение|Part|Підрозділ~10~H~0~~~p.Incr^pCode~Код одразделения|Code of part|Код Підрозділу~10~Y~0~~~p.Code^pName~Подразделение|Part|Підрозділ~20~~0~~~p.Name^BCena~Цена базовая|Base cost|Ціна базова~~~0~~~fn_ExDlm(1,fn_ExDlm(1,sod.Vls,fn_Chr(59)),fn_Chr(94))^ACena~Цена дополнительная|Additional cost|Ціна додаткова~~~0~~~fn_ExDlm(1,fn_ExDlm(2,sod.Vls,fn_Chr(59)),fn_Chr(94))^bmplIncr~Прайс (цена баз.)|Price (base cost)|Прайс (ціна баз.)~10~H~0~~~bmpl.Incr^bmplCode~Код прайса (цена баз.)|Code of price (base cost)|Код прайса (ціна баз.)~10~Y~0~~~bmpl.Code^bmplName~Прайс (цена баз.)|Price (base cost)|Прайс (ціна баз.)~20~~0~~~bmpl.Name^amplIncr~Прайс (цена доп.)|Price (add. cost)|Прайс (ціна дод.)~10~H~0~~~ampl.Incr^amplCode~Код прайса (цена доп.)|Code of price (add. cost)|Код прайса (ціна дод.)~10~Y~0~~~ampl.Code^amplName~Прайс (цена доп.)|Price (add. cost)|Прайс (ціна дод.)~20~~0~~~ampl.Name^BCena_Dtl~Цена базовая|Base cost|Ціна базова~10~~0~~{if(ExDlm(1,ExDlm(1,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='0','учетная',
+if(ExDlm(1,ExDlm(1,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='5','розничная',
+if(ExDlm(1,ExDlm(1,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='6','договорная',
+if(ExDlm(1,ExDlm(1,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='7','прайс','цена '+ExDlm(1,ExDlm(1,cFVStr('_view_.Vls'),Chr(59)),Chr(94))
+))))}~^ACena_Dtl~Цена дополнительная|Additional cost|Ціна додаткова~10~~0~~{if(ExDlm(1,ExDlm(2,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='0','учетная',
+if(ExDlm(1,ExDlm(2,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='5','розничная',
+if(ExDlm(1,ExDlm(2,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='6','договорная',
+if(ExDlm(1,ExDlm(2,cFVStr('_view_.Vls'),Chr(59)),Chr(94))='7','прайс','цена '+ExDlm(1,ExDlm(2,cFVStr('_view_.Vls'),Chr(59)),Chr(94))
+))))}~@NONE@211^318^^^^^>VARIABL^{SetDlm(1,cFVStr('VARIABL'),'+','PART_PRICE')}^^^^^^^^^{cSetField('Variabl',SetDlm(2,cFVStr('VARIABL'),'+',cFVStr('_custom_.Part')))}
+{cSetField('BegDat',cFVStr('_custom_.BegDat'))}
+{cSetField('Vls',cFVStr('_custom_.BCena')+Chr(94)+cFVStr('_custom_.BMpl')+Chr(59)+cFVStr('_custom_.ACena')+Chr(94)+cFVStr('_custom_.AMpl'))}
+ cExecSQL('select gen_id(gen_SetOnDat_Incr,1) from settings','>Incr')}
+ MsgDlg('VLS = '+cFVStr('_custom_.BCena')+Chr(94)+cFVStr('_custom_.BMpl')+Chr(59)+cFVStr('_custom_.ACena')+Chr(94)+cFVStr('_custom_.AMpl'))}
+^^BegDat;3;0~Part;1;0~BCena;1;0~BMpl;1;0~ACena;1;0~AMpl;1;0^^^@INCR^_^5~0~0~21^E^~Y@_custom_.BegDat^{cFDL('_view_.BegDat')}~~~0^5~20~100~21^D^{if(cFVStr('_custom_.BegDat')='',cFVStr('BEGDAT'),cFVStr('_custom_.BegDat'))}~~Y~{cSetField('BEGDAT','')}@_custom_.Part^{cFDL('_view_.pIncr')}~~~0^5~60~300~Y^I~21^{if(miCode=21,miFVStr('Incr'),if(cFVStr('_custom_.Part')='',ExDlm(2,cFVStr('VARIABL'),'+'),cFVStr('_custom_.Part')))}~{if(miCode=21,'Y','N')}~Y~{cSetField('VARIABL',SetDlm(2,cFVStr('VARIABL'),'+',cFVStr('_custom_.Part')),1)}@_view_.pIncr^ ~~~3^100~60~85;400~Y^I~21^~HF@_custom_.BCena^{cFDL('_view_.BCena')}^5~100~145~21^C~цена учетная;цена 1;цена 2;цена 3;цена 4;цена розничная;цена договорная;прайс~0;1;2;3;4;5;6;7^{if(cFVStr('_custom_.BCena')='',ExDlm(1,ExDlm(1,cFVStr('VLS'),Chr(59)),Chr(94)),cFVStr('_custom_.BCena'))}~~Y~{cSetField('VLS','')}@_custom_.BMpl^^5~120~145~Y^I~38^{if(cFVStr('_custom_.BMpl')='',ExDlm(2,ExDlm(1,cFVStr('VLS'),Chr(59)),Chr(94)),cFVStr('_custom_.BMpl'))}~{if(cFVInt('_custom_.BCena')=7,'N','Y')}~{if(cFVInt('_custom_.BCena')=7,'Y','N')}~{cSetField('VLS','')}@_custom_.ACena^{cFDL('_view_.ACena')}^160~100~145~21^C~цена учетная;цена 1;цена 2;цена 3;цена 4;цена розничная;цена договорная;прайс~0;1;2;3;4;5;6;7^{if(cFVStr('_custom_.ACena')='',ExDlm(1,ExDlm(2,cFVStr('VLS'),Chr(59)),Chr(94)),cFVStr('_custom_.ACena'))}~~Y~{cSetField('VLS','')}@_custom_.AMpl^^160~120~145~Y^I~38^{if(cFVStr('_custom_.AMpl')='',ExDlm(2,ExDlm(2,cFVStr('VLS'),Chr(59)),Chr(94)),cFVStr('_custom_.AMpl'))}~{if(cFVInt('_custom_.ACena')=7,'N','Y')}~{if(cFVInt('_custom_.ACena')=7,'Y','N')}~{cSetField('VLS','')}@@2^SetOnDat@Incr^Variabl^^^^@@sod.Variabl like 'PART_PRICE+%'@11@@@@@@@@@@@

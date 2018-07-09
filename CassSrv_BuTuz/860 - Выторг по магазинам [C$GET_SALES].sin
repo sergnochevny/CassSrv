@@ -1,0 +1,4 @@
+SELECT
+  Incr,Code,Name,Name1
+FROM SINFO@11111@INCR~<Инкр.>|<Incr.>|<Інкр.>~5~Y~0~~~^CODE~Код|Code|Код~10~~0~~~^NAME~Наименование|Name|Найменування~20~~0~~~^NAME1~База~20~Y~0~~~@NONE@185^465^^^^^^^^^^^^^^^^^^^^^^^@CODE^_~~~2^3~18~100;150~21^E^~~Y@NAME^_~~~2^3~57~450;300~21^E@NAME1^_~~~2^3~98~450;300~21^E@@0^SINFO@INCR^CODE^NAME^NAME1^^@Select INCR, CODE, NAME, NAME1 from SINFO
+@INCRTSINFO = 101@110@@@@@@@@@@@@@@

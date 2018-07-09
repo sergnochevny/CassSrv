@@ -1,0 +1,7 @@
+NONE@455^771^^^^^^^^^^^^^^^^^^{cExecSql('Select code from tsinfo where sid = '+SQ('C$GET_SALES_VIEW'),'_vSCode')}
+cSetVar('_someform_FullScreen','1')}
+{tiSetProp('_tip_HideMainButtons','1,2,3,4,5,6,9,11,12,13,14,15,16,17,18',cGetVar('_vSCode'))}
+{tiSetProp('_tip_HideCustomButtons','1,2,3,4,5,6,7',cGetVar('_vSCode'))}
+{tiSetProp('_tip_ILockToolBars',1)}
+
+^^^^^@~0^ ^4~5~756~385^IC~{cGetVar('_vSCode')}@0000

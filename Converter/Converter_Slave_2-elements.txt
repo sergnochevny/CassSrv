@@ -1,0 +1,31 @@
+     RefDes Value         Shape               Locked Trace clearance Part spacing             Pin swap  Gate swap           Part group 
+---------------------------------------------------------------------------------------------------------------------------------------
+     1-1k   1kOhm         RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     1-1uF  1uF           CAPC2012X145N       No     0.254000        0.000000                 Yes       Internal gates only No group   
+     1-4n35 4N35          SOIC254P975X440-6N  No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     1-330k 330kOhm       RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     2-1k   1kOhm         RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     2-1uF  1uF           CAPC2012X145N       No     0.254000        0.000000                 Yes       Internal gates only No group   
+     2-4n35 4N35          SOIC254P975X440-6N  No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     2-330k 330kOhm       RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     3-1k   1kOhm         RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     3-1uF  1uF           CAPC2012X145N       No     0.254000        0.000000                 Yes       Internal gates only No group   
+     4-1uF  1uF           CAPC2012X145N       No     0.254000        0.000000                 Yes       Internal gates only No group   
+     10uF   10uF          CAPAE530X540N       No     0.254000        0.000000                 Yes       Internal gates only No group   
+     12V    HDR1X2        HDR1X2              No     0.000000        Use design rule defaults Yes       Internal gates only No group   
+     74ac14 74LS14N       SOIC127P600X173-14N No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     78m05  MC7805CT      TO230P950X250-4_3N  No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     220    220Ohm        RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     220uF  220uF         TANKO_ES            No     0.254000        0.000000                 Yes       Internal gates only No group   
+     430    430Ohm        RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     4007   1N4007-E3/54  DIOM5436X245N       No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     4148   1N4148        DIOM5436X245N       No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     DB107S DF1510S-E3/77 BXXXC800DS          No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     J1     HDR1X4        HDR1X4              No     0.000000        Use design rule defaults Yes       Internal gates only No group   
+     L-IN   LED_red       LED3R2_5V           No     0.000000        Use design rule defaults Yes       Internal gates only No group   
+     L-OUT  LED_green     LED3R2_5Vg          No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     L-PWR  LED_orange    LED3R2_5V           No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     max232 MAX232E       SOIC127P600X150-16N No     0.254000        Use design rule defaults Yes       Internal gates only No group   
+     R2     4.7kOhm       RESC3216X60N        No     0.254000        0.000000                 Yes       Internal gates only No group   
+     RS232  HDR1X3        HDR1X3              No     0.000000        Use design rule defaults Yes       Internal gates only No group   
+---------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,47 @@
+; Copyright (c) 2008 LTD Terminal
+
+[Version]
+Signature="$CHICAGO$"
+SetupClass=BASE
+
+[DefaultInstall]
+CustomDestination=cd.EIDukat
+CopyFiles=cpf.EIDukatAll, cpf.EIDukatSql
+UpdateInis=ini.EIDukat
+
+[cd.EIDukat]
+49000,49001,49002,49003 = RegistryDir,1
+
+[RegistryDir]
+,,,"”кажите директорию дл€ распаковки","C:\Terminal" 
+
+[cpf.EIDukatAll]
+ExpImp_Dukat.dll,,4
+EIDukat.ini,,4
+
+[CustomDestination]
+cpf.EIDukat = 1
+
+[SourceDisksFiles]
+ExpImp_Dukat.dll = 1
+EIDukat.ini = 1
+
+[cpf.EIDukatSql]
+PostQuery.sql,,4
+Prepare.sql,,4
+Sells.sql,,4
+
+[CustomDestination]
+cpf.EIDukat = 2
+
+[SourceDisksFiles]
+PostQuery.sql = 2
+Prepare.sql = 2
+Sells.sql = 2
+
+[SourceDisksNames]
+1 = %EIDukat%,"",0 
+2 = %EIDukat%,"",0 
+
+[strings]
+EIDukat = "Export\Import into Dukat"

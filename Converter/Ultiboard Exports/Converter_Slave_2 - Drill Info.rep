@@ -1,0 +1,21 @@
+ULTIBOARD DRILL REPORT
+
+Design: Converter_Slave_2
+
+DRILL FILE SETTINGS
+Excellon 2, Absolute, Inch, 2.5 
+
+
+DEFINITION COPPER LAYERS
+Copper Top
+Copper Bottom
+
+
+--------------------------------------------------------------------
+
+DRILLFILE                                          LAMINATION
+Converter_Slave_2 - Copper Top-Copper Bottom.drl   Copper Top .. Copper Bottom
+
+TOOL     SIZE   TYPE  COUNT
+   1  0.03917    PTH      3
+   2  0.03500    PTH     12

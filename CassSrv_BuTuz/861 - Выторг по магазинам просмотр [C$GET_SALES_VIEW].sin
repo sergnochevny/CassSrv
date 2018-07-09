@@ -1,0 +1,27 @@
+select 
+  cast(NULL as VARCHAR(64)) as NAME,
+  cast(NULL as VARCHAR(10)) as TOTAL,
+  cast(NULL as VARCHAR(10)) as TCK,
+  cast(NULL as VARCHAR(10)) as CSH,
+  cast(NULL as VARCHAR(10)) as CCK,
+  cast(NULL as VARCHAR(10)) as VISA,
+  cast(NULL as VARCHAR(10)) as VCK
+from 
+  dual 
+where 
+  D='Y'@11111@NAME~Магазин~20~~0~~~^TOTAL~Общая сумма~10~~0~~~^TCK~Чеков~5~~0~~~^CSH~Наличными~10~~0~~~^CCK~Чеков~5~~0~~~^VISA~Безналичными~10~~0~~~^VCK~Чеков~5~~0~~~@NONE@94^272^^^^^^^^^^^^^^^^^^^uInitData^^^^@{if(1=1,'',tiSetProp('_tip_IFontStr','12'+Chr(59)+'clMaroon'))}@1^DUAL@INCR^CODE^NAME^^^@@@100@@@TOTAL~Итого~0~20~20~0~~{cFVDbl('_view_.TOTAL')}~0@@@{if(1=1,'',cExecSQL('SELECT INCR FROM TSINFO WHERE SID = '+SQ('C$GET_SALES'),'_vIS'))}
+{if(1=1,'',sysQryOpen('qSales','','','','Select INCR, CODE, NAME, NAME1 from SINFO WHERE INCRTSINFO = '+cGetVar('_vIS')))}
+{if(1=1,'',dsEmpty('_view_')}
+{if(1=1,'',cTraceDS('qSales',
+  [GetDllStr('Sells.dll','GetSales',dsFvStr('qSales','NAME1'),'','_vSumStr')],
+  [dsInsRec('_view_','Name','','Total','','Tck','','CSH','','Cck','','VISA','','Vck','')],
+  [cSetField('_view_.Name',dsFvStr('qSales','NAME'))],
+  [cSetField('_view_.Total',ExDlm(1,'',Chr(59),'_vSumStr'))],
+  [cSetField('_view_.Tck',ExDlm(2,'',Chr(59),'_vSumStr'))],
+  [cSetField('_view_.CSH',ExDlm(3,'',Chr(59),'_vSumStr'))],
+  [cSetField('_view_.Cck',ExDlm(4,'',Chr(59),'_vSumStr'))],
+  [cSetField('_view_.VISA',ExDlm(5,'',Chr(59),'_vSumStr'))],
+  [cSetField('_view_.Vck',ExDlm(6,'',Chr(59),'_vSumStr'))],
+  [dsPost('_view_')]
+))}
+{if(1=1,'',sysQryClose('qSales')}@@@@@@@@

@@ -1,0 +1,89 @@
+uInitSettings~uSetSettings^{cSetVar('v_tDebug','')}
+{cSetVar('v_twSN','')}
+{cSetVar('v_twPT','')}
+{cSetVar('v_tSQL_Sells','')}
+{cSetVar('v_tSQL_Sells_SN','')}
+{cSetVar('v_tSQL_Sells_PT','')}
+{cSetVar('v_tSQL_Sells_PT_SN','')}
+{cSetVar('v_tMTU_SD','')}
+{cSetVar('v_tMTU_VATSD','')}
+
+{cSetVar('vVar','')}
+{cSetVar('vSQL','SELECT VARIABL FROM VARIABLES WHERE VARIABL = '+SQ('SET_EXPORT_EKKA'))}
+{cExecSQL('=vSQL','vVar')}
+
+{if(Len('','vVar')>0,'cmdExit','')}
+{cSetVar('vSQL','INSERT INTO VARIABLES(VARIABL) VALUES ('+SQ('SET_EXPORT_EKKA')+')')}
+{cExecSQL('=vSQL')}
+;
+
+{cSetVar('vSQL','SELECT')}
+{cAddToVar('vSQL',' fn_ExDlm(1,fn_ExDlm(1,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(2,fn_ExDlm(1,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(3,fn_ExDlm(1,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(1,fn_ExDlm(2,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(2,fn_ExDlm(2,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(3,fn_ExDlm(2,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(4,fn_ExDlm(2,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(1,fn_ExDlm(3,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',', fn_ExDlm(2,fn_ExDlm(3,VAL,'+SQ(Chr(64))+'),'+SQ(Chr(94))+')')}
+{cAddToVar('vSQL',' FROM VAR_GET(')}
+{cAddToVar('vSQL',SQ('SET_EXPORT_EKKA')+',0,NULL,NULL)')}
+{cExecSQL('=vSQL','v_tDebug','v_twSN','v_twPT','v_tSQL_Sells','v_tSQL_Sells_SN','v_tSQL_Sells_PT','v_tSQL_Sells_PT_SN','v_tMTU_SD','v_tMTU_VATSD')}
+;
+
+{cSetVar(if(cGetVar('v_tDebug')='','v_tDebug',''),'0')}
+{cSetVar(if(cGetVar('v_twSN')='','v_twSN',''),'0')}
+{cSetVar(if(cGetVar('v_twPT')='','v_twPT',''),'0')}
+{cSetVar(if(cGetVar('v_tSQL_Sells')='','v_tSQL_Sells',''),'Sells.sql')}
+{cSetVar(if(cGetVar('v_tSQL_Sells_SN')='','v_tSQL_Sells_SN',''),'SN_Sells.sql')}
+{cSetVar(if(cGetVar('v_tSQL_Sells_PT')='','v_tSQL_Sells_PT',''),'PT_Sells.sql')}
+{cSetVar(if(cGetVar('v_tSQL_Sells_PT_SN')='','v_tSQL_Sells_PT_SN',''),'PT_SN_Sells.sql')}
+{cSetVar(if(cGetVar('v_tMTU_SD')='','v_tMTU_SD',''),'0')}
+{cSetVar(if(cGetVar('v_tMTU_VATSD')='','v_tMTU_VATSD',''),'0')}
+;
+ 
+{cSetField('_custom_.tDebug',StrToIntDef(cGetVar('v_tDebug'),0))}
+{cSetField('_custom_.twSN',StrToIntDef(cGetVar('v_twSN'),0))}
+{cSetField('_custom_.twPT',StrToIntDef(cGetVar('v_twPT'),0))}
+{cSetField('_custom_.tSQL_Sells','','v_tSQL_Sells')}
+{cSetField('_custom_.tSQL_Sells_SN','','v_tSQL_Sells_SN')}
+{cSetField('_custom_.tSQL_Sells_PT','','v_tSQL_Sells_PT')}
+{cSetField('_custom_.tSQL_Sells_PT_SN','','v_tSQL_Sells_PT_SN')}
+{cSetField('_custom_.tMTU_SD','','v_tMTU_SD')}
+{cSetField('_custom_.tMTU_VATSD','','v_tMTU_VATSD')}
+;
+~{cFVStr('_custom_.tDebug','v_tDebug')}
+{cFVStr('_custom_.twSN','v_twSN')}
+{cFVStr('_custom_.twPT','v_twPT')}
+{cFVStr('_custom_.tSQL_Sells','v_tSQL_Sells')}
+{cFVStr('_custom_.tSQL_Sells_SN','v_tSQL_Sells_SN')}
+{cFVStr('_custom_.tSQL_Sells_PT','v_tSQL_Sells_PT')}
+{cFVStr('_custom_.tSQL_Sells_PT_SN','v_tSQL_Sells_PT_SN')}
+{cFVStr('_custom_.tMTU_SD','v_tMTU_SD')}
+{cFVStr('_custom_.tMTU_VATSD','v_tMTU_VATSD')}
+;
+
+{cSetVar('v_Val1','')}
+{cSetVar('v_Val3','')}
+{cSetVar('v_Val2','')}
+{cSetVar('v_Val','')}
+;
+
+{SetDlm(1,'',Chr(94),'','v_Val1','v_Val1','v_tDebug')}
+{SetDlm(2,'',Chr(94),'','v_Val1','v_Val1','v_twSN')}
+{SetDlm(3,'',Chr(94),'','v_Val1','v_Val1','v_twPT')}
+{SetDlm(1,'',Chr(94),'','v_Val2','v_Val2','v_tSQL_Sells')}
+{SetDlm(2,'',Chr(94),'','v_Val2','v_Val2','v_tSQL_Sells_SN')}
+{SetDlm(3,'',Chr(94),'','v_Val2','v_Val2','v_tSQL_Sells_PT')}
+{SetDlm(4,'',Chr(94),'','v_Val2','v_Val2','v_tSQL_Sells_PT_SN')}
+{SetDlm(1,'',Chr(94),'','v_Val3','v_Val3','v_tMTU_SD')}
+{SetDlm(2,'',Chr(94),'','v_Val3','v_Val3','v_tMTU_VATSD')}
+{SetDlm(1,'',Chr(64),'','v_Val','v_Val','v_Val1')}
+{SetDlm(2,'',Chr(64),'','v_Val','v_Val','v_Val2')}
+{SetDlm(3,'',Chr(64),'','v_Val','v_Val','v_Val3')}
+;
+
+{cSetVar('vSQL','UPDATE  VARIABLES SET VLS = '+SQ(cGetVar('v_Val'))+' WHERE VARIABL = '+SQ('SET_EXPORT_EKKA'))}
+{cExecSQL('=vSQL')}
+;NONE@443^421^^{cCalcVar('uSetSettings','',Chr(59))}^^^^^^^^^^^^^^^tDebug;1;1;;Отладка~twSN;1;1;;по серийному номеру~twPT;1;1;;по виду оплаты~tSQL_Sells;2;20;;упрощенный селект~tSQL_Sells_SN;2;20;;с серийным номером~tSQL_Sells_PT;2;20;;с видом оплаты~tSQL_Sells_PT_SN;2;20;;с с.номером и водом оплаты~tMTU_SD;1;10;;МТУ погрешности~tMTU_VATSD;1;10;;МТУ погрешности НДС^{cCalcVar('uInitSettings','',Chr(59))}^^^@G1^Разбивать документы реализации^2~7~409~71^G@_custom_.twSN;G1^_^10~17~344~17^X~1~0~0@_custom_.twPT;G1^_^10~45~367~17^X~1~0~0@_custom_.tMTU_SD^_^2~97~409~Y^I~13@_custom_.tMTU_VATSD^_^2~136~409~Y^I~13@G2^Наименования файлов с селектами^2~170~410~186^G@_custom_.tSQL_Sells;G2^_^10~32~390~21^E^~~Y@_custom_.tSQL_Sells_SN;G2^_^10~72~390~21^E^~~Y@_custom_.tSQL_Sells_PT;G2^_^10~113~390~21^E^~~Y@_custom_.tSQL_Sells_PT_SN;G2^_^10~154~390~21^E^~~Y@_custom_.tDebug^_^11~360~249~17^X~1~0~0@0000

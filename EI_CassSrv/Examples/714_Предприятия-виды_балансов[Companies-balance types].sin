@@ -1,0 +1,10 @@
+SELECT
+  V.Variabl as Variabl,
+  FACT.Incr as FACTIncr, FACT.CodeZKPO as FACTCode, FACT.Name as FACTName,
+  TBL.Incr as TBLIncr, TBL.Code as TBLCode, TBL.Name as TBLName
+FROM VARIABLES V
+  LEFT JOIN FACTORY FACT ON FACT.Incr=fn_ExDlm(2,V.Variabl,'+')
+  LEFT JOIN VAR_GET(V.Variabl,3,NULL,NULL) VG ON 1=1
+  LEFT JOIN TBAL TBL     ON TBL.Incr =VG.Val@11111@Variabl~Предприятие|Company~20~H~0~~~V.Variabl^FACTIncr~Предприятие|Company~10~H~0~~~FACT.Incr^FACTCode~Код предприятия|Code of Company~10~Y~0~~~FACT.CodeZKPO^FACTName~Предприятие|Company~20~~0~~~FACT.Name^TBLIncr~Вид баланса|Balance type~10~H~0~~~TBL.Incr^TBLCode~Код вида баланса|Code of balance type~10~Y~0~~~PRT.Code^TBLName~Вид баланса|Balance type~20~~0~~~PRT.Name@NONE@145^317^^^^^>Tp^3^PRIMARY;_VIEW_.FACTIncr;^^^^^^^^{cSetField('Variabl','FACT_TBAL+'+cFVStr('_VIEW_.FACTIncr'))}
+{cSetField('Vls',cFVStr('_VIEW_.TBLIncr')+Chr(94)+'82')}
+^^^^^@VARIABL^_^5~0~0~21^E^~Y@_VIEW_.FACTIncr^Предприятие|Company~~~3^5~15~300~Y^I~12^~N~Y~{cSetField('Variabl','',1)}@_VIEW_.TBLIncr^Вид баланса|Balance type~~~3^5~50~300~Y^I~82^{if(miCode=82,miFVStr('Incr'),'')}~{if(miCode=82,'Y','N')}~Y~{cSetField('Variabl','',1)}@{if(miCode=82,' ['+miFV('CODE')+' - '+miFV('NAME')+']','')}@2^VARIABLES@Variabl^Variabl^^@@V.Variabl LIKE 'FACT_TBAL+%'@11@@@

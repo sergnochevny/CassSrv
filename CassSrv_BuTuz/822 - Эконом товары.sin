@@ -1,0 +1,11 @@
+SELECT cr.incr as incr, cr.i1 as i1, cr.i2 as i2,
+  m1.incrmtu as m1incr, m1.mtucode as m1code, m1.mtuname as m1name,
+  m2.incrmtu as m2incr, m2.mtucode as m2code, m2.mtuname as m2name
+FROM CROSS1 cr
+left join tcross tcr on cr.incrtcross = tcr.incr
+left join v_mtupos m1 on cr.I1 = m1.incr
+left join v_mtupos m2 on cr.I2 = m2.incr
+where tcr.SID = 'GOODS_CROSS'@11111@INCR~<Инкр.>|<Incr.>|<Інкр.>~5~Y~0~~~cr.incr^m1incr~Инкр. перв. товар~10~~0~~~m1.incr^m1code~Код перв. товар~10~~0~~~m1.code^m1name~Наименование перв. товар~30~~0~~~m1.name^m2incr~Инкр. ек. товар~10~~0~~~m2.incr^m2code~Код ек. товар~10~~0~~~m2.code^m2name~Наименование ек. товар~30~~0~~~m2.name^i1~Перв. товар~10~H~0~~~cr.i1^i2~Ек. товар~10~H~0~~~cr.i2@NONE@187^465^^^^^^^^^^^^^^^{cSetField('INCRTCROSS','','vIncrTcross')}^^cIncrPart;1;10;;Подразделение^^^^@_custom_.cIncrPart^_^5~19~447~Y^I~21^~~Y@I1^_^5~58~448~Y^I~52~~;;INCRPART = {cFVInt('_custom_.cIncrPart')}
+^~{if(cFVInt('_custom_.cIncrPart')=0,'Y','N')}~Y@I2^_^5~97~448~Y^I~52~~;;INCRPART = {cFVInt('_custom_.cIncrPart')}
+and MP.INCR <> {cFVInt('I1')}
+^~{if(cFVInt('_custom_.cIncrPart')=0,'Y',if(cFVInt('I1')=0,'Y','N'))}~Y@{cExecSQL('SELECT INCR FROM TCROSS WHERE SID =' + SQ('GOODS_CROSS'),'vIncrTcross')}@2^CROSS1@INCR^I1^I2^^^@@INCRTCROSS = (SELECT INCR FROM TCROSS WHERE SID = 'GOODS_CROSS')@110@@@@@@@@@@@@@@

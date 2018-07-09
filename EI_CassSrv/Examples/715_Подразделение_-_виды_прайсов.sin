@@ -1,0 +1,11 @@
+SELECT
+  V.Variabl as Variabl,
+  PART.Incr as PartIncr, PART.Code as PartCode, PART.Name as PartName,
+  MPL.Incr as MPLIncr, MPL.Code as MPLCode, MPL.Name as MPLName
+FROM VARIABLES V
+  LEFT JOIN Part PART ON PART.Incr=fn_ExDlm(2,V.Variabl,'+')
+  LEFT JOIN VAR_GET(V.Variabl,3,NULL,NULL) VG ON 1=1
+  LEFT JOIN MTUPRICEL  MPL ON MPL.Incr =VG.Val
+@11111@Variabl~Подразделение~20~H~0~~~V.Variabl^PARTTIncr~Подразделение~10~H~0~~~PART.Incr^PARTCode~Код подразделения~10~Y~0~~~PART.Code^PARTName~Подразделение~20~~0~~~PART.Name^MPLIncr~Вид прайса~10~H~0~~~V.DOIncr^MPLCode~Код вида прайса~10~Y~0~~~MPL.Code^MPLName~Вид прайса~20~~0~~~MPL.Name@NONE@145^317^^^^^>Tp^3^PRIMARY;_VIEW_.PARTIncr;^^^^^^^^{cSetField('Variabl','PART_MPL+'+cFVStr('_VIEW_.PARTIncr'))}
+{cSetField('Vls',cFVStr('_VIEW_.MPLIncr')+Chr(94)+'38')}
+^^^^^@VARIABL^_^5~0~0~21^E^~Y@_VIEW_.PARTIncr^Подразделение~~~3^5~15~300~Y^I~21^~N~Y~{cSetField('Variabl','',1)}@_VIEW_.MPLIncr^Виды прайсов~~~3^5~50~300~Y^I~38^{if(miCode=38,miFVStr('Incr'),'')}~{if(miCode=38,'Y','N')}~Y~{cSetField('Variabl','',1)}@{if(miCode=38,' ['+miFV('CODE')+' - '+miFV('NAME')+']','')}@2^VARIABLES@Variabl^Variabl^^@@V.Variabl LIKE 'PART_MPL+%'@11@@@
